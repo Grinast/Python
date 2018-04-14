@@ -23,7 +23,7 @@ def possibilities(board):
     tuples = np.argwhere(board == 0)
     return tuples
 
-#currect player puts a mark in a rondom available position
+#current player puts a mark in a rondom available position
 def random_place(board, player):
     board[tuple(random.choice(possibilities(board)))] = player
     return board
@@ -85,28 +85,32 @@ def play_strategic_game():
     
 start = time.time()
 record = []
-for i in range(1000):
+for i in range(10000):
     record.append(play_game())
 stop = time.time()
 
-#Compare number of wins. 
-plt.hist(record, bins = [-1.2, -0.8, 0.8, 1.2, 1.8, 2.2], normed = "True")
-plt.show()
-print("Execution time =", stop - start)
-print("Player 1 has the advantage when both players play randomly")
-
-
-start = time.time()
+start2 = time.time()
 record2 = []
-for i in range(1000):
+for i in range(10000):
     record2.append(play_strategic_game())
-stop = time.time()
+stop2 = time.time()
 
 #Compare number of wins. 
-plt.hist(record2, bins = [-1.2, -0.8, 0.8, 1.2, 1.8, 2.2], normed = "True")
+plt.subplot(121)
+plt.title("10000 random games")
+plt.hist(record, bins = [-1.2, -0.8, 0.8, 1.2, 1.8, 2.2])
+# Set x axis limit.
+plt.ylim(0, 10000)
+plt.subplot(122)
+plt.title("10000 strategic games")
+plt.hist(record2, bins = [-1.2, -0.8, 0.8, 1.2, 1.8, 2.2])
+plt.ylim(0, 10000)
 plt.show()
-print("Execution time =", stop - start)
-print("Player 1 has an even bigger advantage when it chooses the middle cell as the starting move and both players play randomly afterwards.")
+print("Player 1 has the advantage when both players play randomly.")
+print("Player 1 has an even bigger advantage when it chooses the middle cell as the starting move and both players play randomly afterwards.\n")
+print("Execution time of 10000 random games =", stop - start)
+print("Execution time of 10000 strategic games =", stop2 - start2)
+
 
 
 """
