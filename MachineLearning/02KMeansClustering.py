@@ -5,7 +5,6 @@ Created on Fri Nov  2 18:08:20 2018
 @author: Cristina
 """
 
-import random
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
